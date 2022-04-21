@@ -29,8 +29,10 @@ fn main() {
                     map.insert(current.clone(), Vec::<u32>::new());
                 }
             }
-            Record::LineData { line, .. } => {
-                map.get_mut(&current).unwrap().push(line);
+            Record::LineData { line, count, .. } => {
+                if count > 0 {
+                    map.get_mut(&current).unwrap().push(line);
+                }
             }
             _ => {}
         }
