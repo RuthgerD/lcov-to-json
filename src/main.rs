@@ -38,6 +38,11 @@ fn main() {
         }
     }
 
+    let map = map
+        .drain()
+        .filter(|(_, v)| !v.is_empty())
+        .collect::<HashMap<_, _>>();
+
     stdout()
         .write_all(serde_json::to_string_pretty(&map).unwrap().as_bytes())
         .unwrap();
